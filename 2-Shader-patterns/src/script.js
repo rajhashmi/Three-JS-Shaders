@@ -28,6 +28,7 @@ const material = new THREE.ShaderMaterial({
     fragmentShader: testFragmentShader,
     side: THREE.DoubleSide
 })
+console.log(geometry.attributes.uv)
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
