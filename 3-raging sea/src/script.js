@@ -4,13 +4,17 @@ import GUI from 'lil-gui'
 
 import vertexShaders from './shaders/vertex.glsl'
 import fragmentShaders from './shaders/fragment.glsl'
-console.log(vertexShaders, fragmentShaders)
 
 /**
  * Base
  */
 // Debug
 const gui = new GUI({ width: 340 })
+
+const colorObjecct = {};
+colorObjecct.deeptColor = '#0000ff'
+colorObjecct.surfaceColor = '#8888ff'
+
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -30,8 +34,12 @@ const waterMaterial = new THREE.ShaderMaterial({
     fragmentShader: fragmentShaders,
     uniforms : {
         waveElevation : {value: 0.2},
+
         waveFrequency: {value: new THREE.Vector2(4,1.5)},
-        uTime: {value: 0}
+        uTime: {value: 0},
+
+        deepColor: {value: new THREE.Color(colorObjecct.deeptColor)},
+        surfaceColor: {value: new THREE.Color(colorObjecct.surfaceColor)},
     }
 })
 
@@ -101,7 +109,7 @@ const tick = () =>
     // Render
     renderer.render(scene, camera)
 
-    // Call tick again on the next frame
+    // Call tick again on the next frame 
     window.requestAnimationFrame(tick)
 }
 
